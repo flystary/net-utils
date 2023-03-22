@@ -27,10 +27,13 @@ func main() {
 			maskLen++
 		}
 	}
-	network := ipUtils.GetNetworkAddress(ip, mask, maskLen)
+	var network uint32
+	network = ipUtils.GetNetworkAddress(ip, mask, maskLen)
 
 	fmt.Printf("address: %s\n", ipStr)
 	fmt.Printf("netmask: %s\n", maskStr)
 
-	fmt.Printf("network: %s\n", iputils.ToIPString(network))
+	var net iputils.Uint32 = iputils.Uint32(network)
+
+	fmt.Printf("network: %s\n", net.ToIPString())
 }

@@ -6,6 +6,18 @@ import (
 	"strings"
 )
 
+type Uint32 uint32
+
+func (u32 Uint32) ToIPString() string {
+	octets := make([]string, 4)
+	for i := 0; i < 4; i++ {
+		octets[3-i] = strconv.Itoa(int(u32 & 0xff))
+		u32 >>= 8
+	}
+	return strings.Join(octets, ".")
+
+}
+
 type IPUtils interface {
 	ParseIP(ipStr string) (uint32, error)
 	ParseMask(maskStr string) (uint32, error)
@@ -64,14 +76,4 @@ func (i *ipUtils) GetMask(maskLen int) uint32 {
 		mask |= (1 << uint(31-j))
 	}
 	return mask
-}
-
-func ToIPString(u32 uint32) string {
-	octets := make([]string, 4)
-	for i := 0; i < 4; i++ {
-		octets[3-i] = strconv.Itoa(int(u32 & 0xff))
-		u32 >>= 8
-	}
-	return strings.Join(octets, ".")
-
 }
