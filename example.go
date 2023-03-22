@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	iputils "github.com/flystary/net-utils/ip"
 )
 
 func main() {
@@ -28,7 +29,8 @@ func main() {
 	}
 	network := ipUtils.GetNetworkAddress(ip, mask, maskLen)
 
-	fmt.Printf("IP地址: %s\n", ipStr)
-	fmt.Printf("子网掩码: %s\n", maskStr)
-	fmt.Printf("网络地址: %s\n", ipUtils.IPString(network))
+	fmt.Printf("address: %s\n", ipStr)
+	fmt.Printf("netmask: %s\n", maskStr)
+
+	fmt.Printf("network: %s\n", iputils.ToIPString(network))
 }

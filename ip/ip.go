@@ -65,3 +65,13 @@ func (i *ipUtils) GetMask(maskLen int) uint32 {
 	}
 	return mask
 }
+
+func ToIPString(u32 uint32) string {
+	octets := make([]string, 4)
+	for i := 0; i < 4; i++ {
+		octets[3-i] = strconv.Itoa(int(u32 & 0xff))
+		u32 >>= 8
+	}
+	return strings.Join(octets, ".")
+
+}
