@@ -2,14 +2,14 @@ package main
 
 import (
 	"fmt"
-	iputils "github.com/flystary/net-utils/ip"
+	. "github.com/flystary/net-utils/ip" //不使用别名引入包
 )
 
 func main() {
 	ipStr := "192.168.1.100"
 	maskStr := "255.255.255.0"
 
-	ipUtils := iputils.NewIPUtils()
+	ipUtils := NewIPUtils()
 
 	ip, err := ipUtils.ParseIP(ipStr)
 	if err != nil {
@@ -33,7 +33,7 @@ func main() {
 	fmt.Printf("address: %s\n", ipStr)
 	fmt.Printf("netmask: %s\n", maskStr)
 
-	var net iputils.Uint32 = iputils.Uint32(network)
+	var net Uint32 = Uint32(network)
 
 	fmt.Printf("network: %s\n", net.ToIPString())
 }
